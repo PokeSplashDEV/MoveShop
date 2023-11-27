@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "moveshop",
+  "version": "${version}",
+  "name": "MoveShop",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Ben/untitled"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "org.pokesplash.moveshop.MoveShop"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
