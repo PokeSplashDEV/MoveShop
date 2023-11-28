@@ -51,10 +51,10 @@ public abstract class ImpactorUtils {
 	 * @param amount The amount to remove from the account.
 	 * @return true if the transaction was successful.
 	 */
-	public static boolean remove(Account account, double amount) {
+	public static EconomyTransaction remove(Account account, double amount) {
 		EconomyTransaction transaction = account.withdrawAsync(new BigDecimal(amount)).join();
 
-		return transaction.successful();
+		return transaction;
 	}
 
 	/**

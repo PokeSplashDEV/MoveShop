@@ -11,7 +11,7 @@ import org.pokesplash.moveshop.config.Lang;
 public class MoveShop implements ModInitializer {
 	public static final String MOD_ID = "MoveShop";
 	public static final String BASE_PATH = "/config/" + MOD_ID + "/";
-	public static final Logger LOGGER = LogManager.getLogger();
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	public static final Config config = new Config();
 	public static final Lang lang = new Lang();
 

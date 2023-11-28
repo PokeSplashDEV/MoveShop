@@ -285,10 +285,10 @@ public abstract class Utils {
 	 * Replaces placeholders
 	 * @return Amended string.
 	 */
-	public static String formatPlaceholders(String message, double param1, String param2) {
+	public static String formatPlaceholders(String message, String pokemon, String move) {
 		return message
-				.replaceAll("\\{param1\\}", String.valueOf(param1))
-				.replaceAll("\\{param2\\}", param2);
+				.replaceAll("%pokemon%", pokemon)
+				.replaceAll("%move%", move);
 	}
 
 	/**
