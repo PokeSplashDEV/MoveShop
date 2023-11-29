@@ -34,7 +34,11 @@ public class TeachUI {
 
 		Collection<String> moves = new ArrayList<>();
 		for (Move move1 : pokemon.getMoveSet().getMoves()) {
-			moves.add(move1.getName());
+			if (move == null) {
+				moves.add("No Move");
+			} else {
+				moves.add(move1.getName());
+			}
 		}
 
 		GooeyButton pokemonButton = GooeyButton.builder()
@@ -50,7 +54,10 @@ public class TeachUI {
 
 			int finalX = x;
 			slotButtons.add(GooeyButton.builder()
-					.title(currentMove.getDisplayName().setStyle(Style.EMPTY.withColor(TextColor.parse("blue"))))
+					.title(
+							currentMove == null ?
+									Text.literal("No Move").setStyle(Style.EMPTY.withColor(TextColor.parse("blue"))) :
+									currentMove.getDisplayName().setStyle(Style.EMPTY.withColor(TextColor.parse("blue"))))
 							.display(Utils.parseItemId(MoveShop.lang.getMoveSlotItem()))
 							.onClick(e -> {
 								Account account = ImpactorUtils.getAccount(player.getUuid());
