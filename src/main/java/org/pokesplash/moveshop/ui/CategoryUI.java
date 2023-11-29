@@ -16,6 +16,9 @@ import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.api.moves.Moves;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import org.pokesplash.moveshop.MoveShop;
 import org.pokesplash.moveshop.config.CategoryConfig;
 import org.pokesplash.moveshop.config.MoveConfig;
@@ -53,8 +56,8 @@ public class CategoryUI {
 				continue;
 			}
 
-			Collection<String> lore = new ArrayList<>();
-			lore.add("§b" + move.getDescription().getString());
+			Collection<String> lore =
+					new ArrayList<>(Utils.cutString(move.getDescription().getString(), 45, "§9"));
 			lore.add("§aPrice: §e" + moveConfig.getPrice());
 			lore.add("§6Current Balance: " + ImpactorUtils.getAccount(player.getUuid()).balanceAsync().join());
 
@@ -83,7 +86,8 @@ public class CategoryUI {
 
 			Button button = GooeyButton.builder()
 					.display(Utils.parseItemId(category.getDisplayItem()))
-					.title(move.getDisplayName())
+					.title(Text.literal(move.getDisplayName().getString())
+							.setStyle(Style.EMPTY.withColor(TextColor.parse(category.getPrefix()))))
 					.lore(lore)
 					.onClick(el -> {
 						UIManager.openUIForcefully(el.getPlayer(), new MoveUI().getPage(move, moveConfig,

@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
@@ -301,5 +302,27 @@ public abstract class Utils {
 		tag.putString("id", id);
 		tag.putInt("Count", 1);
 		return ItemStack.fromNbt(tag);
+	}
+
+	public static ArrayList<String> cutString(String message, int amount, String prefix) {
+
+		if (message.length() <= amount) {
+			ArrayList<String> ar = new ArrayList<>();
+			ar.add(prefix + message);
+			return ar;
+		}
+
+
+		int pos = message.lastIndexOf(" ", amount);
+		if (pos == -1) {
+			pos = 15;
+		}
+
+		ArrayList<String> substrings = new ArrayList<>();
+
+		substrings.add(prefix + message.substring(0, pos));
+		substrings.addAll(cutString(message.substring(pos + 1), amount, prefix));
+
+		return substrings;
 	}
 }

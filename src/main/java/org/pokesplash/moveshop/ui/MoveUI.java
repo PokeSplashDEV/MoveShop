@@ -12,6 +12,7 @@ import net.impactdev.impactor.api.economy.accounts.Account;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
+import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import org.pokesplash.moveshop.MoveShop;
 import org.pokesplash.moveshop.config.CategoryConfig;
@@ -25,13 +26,14 @@ import java.util.Collection;
 public class MoveUI {
 	public Page getPage(MoveTemplate move, MoveConfig moveConfig, CategoryConfig category,
 	                    ServerPlayerEntity player, Pokemon pokemon) {
-		Collection<MutableText> lore = new ArrayList<>();
-		lore.add(move.getDescription().setStyle(Style.EMPTY.withColor(TextColor.parse("aqua"))));
+		Collection<String> lore =
+				new ArrayList<>(Utils.cutString(move.getDescription().getString(), 45, "§9"));
 
 		GooeyButton itemButton = GooeyButton.builder()
 				.display(Utils.parseItemId(category.getDisplayItem()))
-				.title(move.getDisplayName())
-				.lore(MutableText.class, lore)
+				.title(Text.literal(move.getDisplayName().getString())
+						.setStyle(Style.EMPTY.withColor(TextColor.parse(category.getPrefix()))))
+				.lore(lore)
 				.build();
 
 		Collection<String> purchaseLore = new ArrayList<>();

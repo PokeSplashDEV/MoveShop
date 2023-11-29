@@ -11,6 +11,9 @@ import ca.landonjw.gooeylibs2.api.page.Page;
 import ca.landonjw.gooeylibs2.api.template.types.ChestTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import org.pokesplash.moveshop.MoveShop;
 import org.pokesplash.moveshop.config.CategoryConfig;
 import org.pokesplash.moveshop.util.Utils;
@@ -26,7 +29,8 @@ public class MainUI {
 		for (CategoryConfig category : MoveShop.config.getCategories()) {
 			Button button = GooeyButton.builder()
 					.display(Utils.parseItemId(category.getDisplayItem()))
-					.title(category.getName())
+					.title(Text.literal(category.getName())
+							.setStyle(Style.EMPTY.withColor(TextColor.parse(category.getPrefix()))))
 					.onClick(el -> {
 						ServerPlayerEntity player = el.getPlayer();
 

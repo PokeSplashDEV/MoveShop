@@ -70,7 +70,7 @@ public class TeachUI {
 								e.getPlayer().sendMessage(Text.literal(
 										Utils.formatPlaceholders(MoveShop.lang.getGiveMessage(),
 												pokemon.getDisplayName().getString(),
-												move.getName())
+												move.getDisplayName().getString())
 								));
 							})
 					.build());
